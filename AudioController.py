@@ -2,7 +2,7 @@ import pulsectl
 
 class AudioController:
 
-    pulse = pulsectl.Pulse('volume-controller')
+    pulse = pulsectl.Pulse('AudioController')
     master = pulse.sink_list()[0]
     source = pulse.source_list()[0]
 
