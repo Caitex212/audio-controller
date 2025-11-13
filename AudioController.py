@@ -28,14 +28,17 @@ class AudioController:
 
         return default_sink_name, default_source_name
 
-    def getDefaultDevice(self):
+    def getDefaultDevices(self):
         return self.master, self.source
     
-    def getVolume(self, device: pulsectl.pulsectl.PulseSourceInfo): # get the device with getDefaultDevice
+    def getApplications(self):
+        return self.pulse.sink_input_list()
+    
+    def getVolume(self, device): # get the device with getDefaultDevice or getApplications
         return self.pulse.volume_get_all_chans(device)
     
-    def setVolume(self, volume: float, device: pulsectl.pulsectl.PulseSourceInfo): # get the device with getDefaultDevice
+    def setVolume(self, volume: float, device): # get the device with getDefaultDevice or getApplications
         self.pulse.volume_set_all_chans(device, volume)
 
-    def setMute(self, mute: bool, device: pulsectl.pulsectl.PulseSourceInfo): # get the device with getDefaultDevice
+    def setMute(self, mute: bool, device): # get the device with getDefaultDevice or getApplications
         self.pulse.mute(device, mute)
