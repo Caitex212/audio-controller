@@ -3,8 +3,8 @@ import pulsectl
 class AudioController:
 
     pulse = pulsectl.Pulse('AudioController')
-    master = pulse.sink_list()[0]
-    source = pulse.source_list()[0]
+    master = None # Default output device
+    source = None # Default input device
 
     def __init__(self):
         default_sink_name = self.pulse.server_info().default_sink_name
