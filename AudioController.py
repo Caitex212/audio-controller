@@ -50,3 +50,7 @@ class AudioController:
 
     def isMuted(self, device): # get the device with getDefaultDevice or getApplications
         return device.mute # bool
+    
+    def toggleMute(self, device): # get the device with getDefaultDevice or getApplications
+        current_mute = self.isMuted(device)
+        self.setMute(not current_mute, device)
