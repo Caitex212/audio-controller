@@ -39,6 +39,14 @@ class AudioController:
     
     def setVolume(self, volume: float, device): # get the device with getDefaultDevice or getApplications
         self.pulse.volume_set_all_chans(device, volume)
+    
+    def modVolume(self, volume_mod: float, device): # get the device with getDefaultDevice or getApplications
+        current_volume = self.getVolume(device)
+        new_volume = current_volume + volume_mod
+        self.setVolume(new_volume, device)
 
     def setMute(self, mute: bool, device): # get the device with getDefaultDevice or getApplications
         self.pulse.mute(device, mute)
+
+    def isMuted(self, device): # get the device with getDefaultDevice or getApplications
+        return device.mute # bool
