@@ -34,6 +34,16 @@ class AudioController:
     def getApplications(self):
         return self.pulse.sink_input_list()
     
+    def getApplicationsDic(self):
+        apps = self.getApplications()
+        app_dic = {}
+        for app in apps:
+            app_dic[app.proplist.get("application.name")] = {
+                "device": app,
+                "volume": self.getVolume(app),
+            }
+        return app_dic
+    
     def getVolume(self, device): # get the device with getDefaultDevice or getApplications
         return self.pulse.volume_get_all_chans(device)
     
