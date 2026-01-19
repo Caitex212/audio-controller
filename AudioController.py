@@ -38,7 +38,7 @@ class AudioController:
         apps = self.getApplications()
         app_dic = {}
         for app in apps:
-            app_dic[app.proplist.get("application.name")] = {
+            app_dic[app.proplist.get("application.process.binary")] = {
                 "device": app,
                 "volume": self.getVolume(app),
             }
